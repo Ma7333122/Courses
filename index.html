@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>كورسات يوديمي بأسعار مذهلة - ابدأ من 50 جنيه فقط!</title>
-    <meta name="description" content="احصل على أفضل كورسات يوديمي في جميع المجالات بأسعار تبدأ من 50 جنيهاً فقط! برمجة، لغات، تصميم، تسويق والمزيد">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #ff5722;
+            --secondary-color: #6a11cb;
+            --accent-color: #2575fc;
+            --ai-color: #7e57c2;
+            --money-color: #4caf50;
+            --light-bg: #f9f9f9;
+            --text-color: #333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --card-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,248 +26,1508 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #333;
-            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 87, 34, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(106, 17, 203, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 30%, rgba(37, 117, 252, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 30% 80%, rgba(37, 211, 102, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 70% 10%, rgba(126, 87, 194, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 20% 60%, rgba(76, 175, 80, 0.1) 0%, transparent 20%);
+            z-index: -1;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
+            margin: 0 auto;
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         
-        .header {
-            background: #ff5722;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 25px;
-        }
-        
-        .features {
+        nav {
+            background: var(--primary-color);
+            padding: 15px 25px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            margin: 20px 0;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .feature {
-            flex-basis: 48%;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+        .nav-scrolled {
+            padding: 10px 25px;
+            background: rgba(255, 87, 34, 0.98);
+        }
+        
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
             display: flex;
             align-items: center;
         }
         
-        .feature i {
-            background: #6a11cb;
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 20px;
+        }
+        
+        .nav-links a {
             color: white;
-            width: 40px;
-            height: 40px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .language-switcher {
+            display: flex;
+            margin-right: 20px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .header {
+            background: linear-gradient(rgba(255, 87, 34, 0.9), rgba(255, 87, 34, 0.9));
+            color: white;
+            padding: 60px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: white;
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .pricing {
+            background: linear-gradient(135deg, #e8f4ff 0%, #c3e6ff 100%);
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing::before {
+            content: "عرض خاص";
+            position: absolute;
+            top: 20px;
+            left: -35px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(-45deg);
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .pricing:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .pricing h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .price-tag {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .special-offer {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .category {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        
+        .category.web-dev::before {
+            background: var(--secondary-color);
+        }
+        
+        .category.ai::before {
+            background: var(--ai-color);
+        }
+        
+        .category.money::before {
+            background: var(--money-color);
+        }
+        
+        .category.design::before {
+            background: #e91e63;
+        }
+        
+        .category:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .category.web-dev:hover {
+            border-color: var(--secondary-color);
+        }
+        
+        .category.ai:hover {
+            border-color: var(--ai-color);
+        }
+        
+        .category.money:hover {
+            border-color: var(--money-color);
+        }
+        
+        .category.design:hover {
+            border-color: #e91e63;
+        }
+        
+        .category i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .category.web-dev i {
+            color: var(--secondary-color);
+        }
+        
+        .category.ai i {
+            color: var(--ai-color);
+        }
+        
+        .category.money i {
+            color: var(--money-color);
+        }
+        
+        .category.design i {
+            color: #e91e63;
+        }
+        
+        .category h3 {
+            margin-bottom: 15px;
+        }
+        
+        .category.web-dev h3 {
+            color: var(--secondary-color);
+        }
+        
+        .category.ai h3 {
+            color: var(--ai-color);
+        }
+        
+        .category.money h3 {
+            color: var(--money-color);
+        }
+        
+        .category.design h3 {
+            color: #e91e63;
+        }
+        
+        .subfields {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            text-align: right;
+            margin-top: 15px;
+        }
+        
+        .category.active .subfields {
+            max-height: 500px;
+        }
+        
+        .subfields ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+        
+        .subfields li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+        }
+        
+        .subfields li::before {
+            content: "•";
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .category.web-dev .subfields li::before {
+            color: var(--secondary-color);
+        }
+        
+        .category.ai .subfields li::before {
+            color: var(--ai-color);
+        }
+        
+        .category.money .subfields li::before {
+            color: var(--money-color);
+        }
+        
+        .category.design .subfields li::before {
+            color: #e91e63;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .feature i {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 10px;
-            font-size: 18px;
+            margin-left: 20px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
         
-        .pricing {
-            background: #e8f4ff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 20px 0;
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
         
-        .pricing h2 {
-            color: #ff5722;
-            margin-bottom: 10px;
+        .testimonial {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            position: relative;
         }
         
-        .price-tag {
-            font-size: 28px;
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 60px;
+            color: var(--primary-color);
+            opacity: 0.2;
+            font-family: Arial;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
             font-weight: bold;
-            color: #ff5722;
-            margin: 10px 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author::before {
+            content: "";
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-color);
+            margin-left: 10px;
+        }
+        
+        .testimonial-rating {
+            color: #ffc107;
+            margin-top: 10px;
         }
         
         .contact {
             text-align: center;
-            margin: 25px 0;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ff5722" opacity="0.1" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            z-index: 0;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 1;
         }
         
         .whatsapp-btn {
             display: inline-block;
             background: #25D366;
             color: white;
-            padding: 15px 30px;
+            padding: 18px 40px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 25px;
             transition: all 0.3s;
-            font-size: 18px;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-btn::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #25D366, #128C7E, #25D366);
+            background-size: 200% 200%;
+            z-index: -1;
+            animation: gradientMove 3s ease infinite;
+            border-radius: 35px;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .note {
-            background: #fff8e1;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-right: 4px solid #ffc107;
-            text-align: center;
-        }
-        
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        
-        .category {
-            flex-basis: 48%;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            text-align: center;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
         .phone-number {
             direction: ltr;
             display: inline-block;
-            background: #f1f1f1;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin: 10px 0;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin: 20px 0;
             font-weight: bold;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .note {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-right: 5px solid #ffc107;
+            text-align: center;
+            position: relative;
+        }
+        
+        .note::before {
+            content: "💡";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq {
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--secondary-color);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        
+        .faq-active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+        
+        .faq-active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
         }
         
         .footer {
             text-align: center;
-            padding: 20px;
-            background: #f5f5f5;
-            color: #666;
-            font-size: 14px;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
         }
         
-        @media (max-width: 600px) {
-            .feature, .category {
-                flex-basis: 100%;
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        .new-features {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f5ff 0%, #e6e1ff 100%);
+            border-radius: 15px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover);
+        }
+        
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .ai-section {
+            background: linear-gradient(135deg, #7e57c2 0%, #5e35b1 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 15px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .ai-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+        
+        .ai-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-feature i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffd54f;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
             }
             
-            .header h1 {
-                font-size: 26px;
+            .categories, .features, .testimonials {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .pricing::before {
+                left: -45px;
+                font-size: 12px;
+            }
+            
+            body {
+                padding-top: 120px;
+            }
+            
+            .language-switcher {
+                margin-top: 15px;
+                justify-content: center;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <nav id="mainNav">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span data-translate="site_title">كورسات يوديمي</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#courses" data-translate="nav_courses">الكورسات</a></li>
+            <li><a href="#features" data-translate="nav_features">المميزات</a></li>
+            <li><a href="#ai" data-translate="nav_ai">الذكاء الاصطناعي</a></li>
+            <li><a href="#testimonials" data-translate="nav_testimonials">آراء العملاء</a></li>
+            <li><a href="#faq" data-translate="nav_faq">الأسئلة الشائعة</a></li>
+            <li><a href="#contact" data-translate="nav_contact">اتصل بنا</a></li>
+        </ul>
+        
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="ar">العربية</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </nav>
+    
     <div class="container">
         <div class="header">
-            <h1>🔥 كورسات يوديمي بأسعار لا تصدق! 🔥</h1>
-            <p>احصل على أفضل الكورسات في جميع المجالات بأسعار تبدأ من 50 جنيهاً فقط!</p>
+            <h1 data-translate="main_title">🔥 كورسات يوديمي بأسعار لا تصدق! 🔥</h1>
+            <p data-translate="main_subtitle">احصل على أفضل الكورسات في جميع المجالات بأسعار تبدأ من 50 جنيهاً فقط! شهادات معتمدة، وصول مدى الحياة، ودعم فني متواصل.</p>
         </div>
         
         <div class="content">
-            <div class="pricing">
-                <h2>أسعارنا لا تنافس!</h2>
-                <p>كورسات بأسعار تبدأ من</p>
+            <div class="pricing animate">
+                <h2 data-translate="pricing_title">أسعارنا لا تنافس!</h2>
+                <p data-translate="pricing_text">كورسات بأسعار تبدأ من</p>
                 <div class="price-tag">50 جنيه مصري فقط!</div>
-                <p>لأفضل الكورسات على منصة يوديمي العالمية</p>
+                <p data-translate="pricing_subtext">لأفضل الكورسات على منصة يوديمي العالمية</p>
+                <div class="special-offer" data-translate="special_offer">عرض لفترة محدودة!</div>
             </div>
             
-            <h2>مجالات الكورسات المتاحة:</h2>
+            <h2 class="section-title" id="courses" data-translate="courses_title">مجالات الكورسات المتاحة:</h2>
             <div class="categories">
-                <div class="category">📱 برمجة وتطوير المواقع</div>
-                <div class="category">📊 تحليل البيانات</div>
-                <div class="category">🎨 التصميم الجرافيكي</div>
-                <div class="category">🌐 اللغات الأجنبية</div>
-                <div class="category">📱 تطبيقات الموبايل</div>
-                <div class="category">💼 التسويق الرقمي</div>
-                <div class="category">🤖 الذكاء الاصطناعي</div>
-                <div class="category">📈 إدارة الأعمال</div>
-            </div>
-            
-            <h2>مميزات الكورسات:</h2>
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-certificate"></i>
-                    <span>شهادات معتمدة دولياً</span>
+                <div class="category web-dev animate" onclick="toggleCategory(this)">
+                    <i class="fas fa-code"></i>
+                    <h3 data-translate="web_dev_title">برمجة وتطوير المواقع</h3>
+                    <p data-translate="web_dev_desc">تعلم أحدث تقنيات البرمجة وتطوير التطبيقات</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="web_dev_item1">تطوير واجهات المستخدم (Frontend)</li>
+                            <li data-translate="web_dev_item2">تطوير الخوادم وقواعد البيانات (Backend)</li>
+                            <li data-translate="web_dev_item3">برمجة تطبيقات الموبايل</li>
+                            <li data-translate="web_dev_item4">تعلم لغات البرمجة (Python, JavaScript, Java)</li>
+                            <li data-translate="web_dev_item5">أطر العمل (React, Angular, Vue)</li>
+                            <li data-translate="web_dev_item6">التطوير باستخدام WordPress</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-play-circle"></i>
-                    <span>وصول مدى الحياة للمحتوى</span>
+                
+                <div class="category ai animate delay-1" onclick="toggleCategory(this)">
+                    <i class="fas fa-robot"></i>
+                    <h3 data-translate="ai_title">الذكاء الاصطناعي</h3>
+                    <p data-translate="ai_desc">احترف أحدث تقنيات الذكاء الاصطناعي وتعلم الآلة</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="ai_item1">تعلم الآلة (Machine Learning)</li>
+                            <li data-translate="ai_item2">التعلم العميق (Deep Learning)</li>
+                            <li data-translate="ai_item3">معالجة اللغة الطبيعية (NLP)</li>
+                            <li data-translate="ai_item4">الرؤية بالحاسب (Computer Vision)</li>
+                            <li data-translate="ai_item5">إنشاء نماذج الذكاء الاصطناعي</li>
+                            <li data-translate="ai_item6">تطبيقات الذكاء الاصطناعي في الأعمال</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-trophy"></i>
-                    <span>محتوى عالي الجودة</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-headset"></i>
-                    <span>دعم فني متواصل</span>
-                </div>
-                <div class="feature">
+                
+                <div class="category money animate delay-2" onclick="toggleCategory(this)">
                     <i class="fas fa-money-bill-wave"></i>
-                    <span>أسعار لا تقبل المنافسة</span>
+                    <h3 data-translate="money_title">الربح من الإنترنت</h3>
+                    <p data-translate="money_desc">اكتشف طرق مبتكرة لتحقيق دخل عبر الإنترنت</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="money_item1">التسويق بالعمولة (Affiliate Marketing)</li>
+                            <li data-translate="money_item2">التجارة الإلكترونية (E-commerce)</li>
+                            <li data-translate="money_item3">التسويق الرقمي (Digital Marketing)</li>
+                            <li data-translate="money_item4">إنشاء المحتوى والمدونات</li>
+                            <li data-translate="money_item5">العمل الحر عبر الإنترنت (Freelancing)</li>
+                            <li data-translate="money_item6">استثمار العملات الرقمية</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>مناهج تعليمية متطورة</span>
+                
+                <div class="category design animate delay-3" onclick="toggleCategory(this)">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3 data-translate="design_title">التصميم الجرافيكي</h3>
+                    <p data-translate="design_desc">أبدع في تصميم الشعارات والمواد البصرية</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="design_item1">التصميم باستخدام Adobe Photoshop</li>
+                            <li data-translate="design_item2">التصميم باستخدام Adobe Illustrator</li>
+                            <li data-translate="design_item3">تصميم واجهات المستخدم (UI/UX)</li>
+                            <li data-translate="design_item4">تصميم الشعارات والهويات البصرية</li>
+                            <li data-translate="design_item5">التصميم باستخدام Figma</li>
+                            <li data-translate="design_item6">فنون الطباعة والخطوط</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category money animate" onclick="toggleCategory(this)">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3 data-translate="marketing_title">التسويق الرقمي</h3>
+                    <p data-translate="marketing_desc">طور مهاراتك في التسويق الإلكتروني</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="marketing_item1">التسويق عبر وسائل التواصل الاجتماعي</li>
+                            <li data-translate="marketing_item2">تحسين محركات البحث (SEO)</li>
+                            <li data-translate="marketing_item3">التسويق عبر محركات البحث (SEM)</li>
+                            <li data-translate="marketing_item4">التسويق عبر البريد الإلكتروني</li>
+                            <li data-translate="marketing_item5">تحليل أداء الحملات التسويقية</li>
+                            <li data-translate="marketing_item6">التسويق بالمحتوى</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category ai animate delay-1" onclick="toggleCategory(this)">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 data-translate="data_title">تحليل البيانات</h3>
+                    <p data-translate="data_desc">احترف تحليل البيانات وتقديم الرؤى القيمة</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="data_item1">تحليل البيانات باستخدام Excel</li>
+                            <li data-translate="data_item2">تعلم لغة R للتحليل الإحصائي</li>
+                            <li data-translate="data_item3">تحليل البيانات باستخدام Python</li>
+                            <li data-translate="data_item4">تصور البيانات باستخدام Tableau</li>
+                            <li data-translate="data_item5">تعلم SQL للتعامل مع قواعد البيانات</li>
+                            <li data-translate="data_item6">التعلم الآلي والذكاء الاصطناعي</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category web-dev animate delay-2" onclick="toggleCategory(this)">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3 data-translate="mobile_title">تطبيقات الموبايل</h3>
+                    <p data-translate="mobile_desc">تعلم تطوير تطبيقات الهواتف الذكية</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="mobile_item1">تطوير تطبيقات Android</li>
+                            <li data-translate="mobile_item2">تطوير تطبيقات iOS</li>
+                            <li data-translate="mobile_item3">التطوير باستخدام Flutter</li>
+                            <li data-translate="mobile_item4">التطوير باستخدام React Native</li>
+                            <li data-translate="mobile_item5">تصميم واجهات تطبيقات الموبايل</li>
+                            <li data-translate="mobile_item6">نشر التطبيقات على المتاجر</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="category money animate delay-3" onclick="toggleCategory(this)">
+                    <i class="fas fa-briefcase"></i>
+                    <h3 data-translate="business_title">إدارة الأعمال</h3>
+                    <p data-translate="business_desc">طور مهاراتك الإدارية وقدرتك على قيادة المشاريع</p>
+                    <div class="subfields">
+                        <ul>
+                            <li data-translate="business_item1">إدارة المشاريع</li>
+                            <li data-translate="business_item2">التخطيط الاستراتيجي</li>
+                            <li data-translate="business_item3">إدارة الموارد البشرية</li>
+                            <li data-translate="business_item4">التسويق والمبيعات</li>
+                            <li data-translate="business_item5">تحليل السوق والمنافسة</li>
+                            <li data-translate="business_item6">ريادة الأعمال</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
-            <div class="contact">
-                <p>للحصول على التفاصيل الكاملة للكورسات والأسعار:</p>
-                <div class="phone-number">01010421571</div>
-                <p>راسلنا على الواتساب للحصول على القائمة الكاملة للكورسات المتاحة</p>
-                <a href="https://wa.me/201010421571" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> تواصل معنا على واتساب
-                </a>
+            <div class="ai-section" id="ai">
+                <h2 class="section-title" style="color: white;" data-translate="ai_section_title">🌟 الذكاء الاصطناعي - مستقبل التكنولوجيا 🌟</h2>
+                <p data-translate="ai_section_desc">انطلق في رحلة تعلم الذكاء الاصطناعي مع أفضل الكورسات التي تؤهلك لسوق العمل المستقبلي</p>
+                
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <i class="fas fa-brain"></i>
+                        <h3 data-translate="ai_feature1_title">تعلم الآلة</h3>
+                        <p data-translate="ai_feature1_desc">تعلم كيفية بناء نماذج تتعلم من البيانات وتتخذ قرارات ذكية</p>
+                    </div>
+                    <div class="ai-feature">
+                        <i class="fas fa-language"></i>
+                        <h3 data-translate="ai_feature2_title">معالجة اللغة الطبيعية</h3>
+                        <p data-translate="ai_feature2_desc">احترف تقنيات فهم وتحليل اللغات البشرية بواسطة الحاسب</p>
+                    </div>
+                    <div class="ai-feature">
+                        <i class="fas fa-eye"></i>
+                        <h3 data-translate="ai_feature3_title">الرؤية بالحاسب</h3>
+                        <p data-translate="ai_feature3_desc">تعلم تقنيات تمكين الحواسيب من فهم المحتوى البصري</p>
+                    </div>
+                    <div class="ai-feature">
+                        <i class="fas fa-robot"></i>
+                        <h3 data-translate="ai_feature4_title">الذكاء الاصطناعي التوليدي</h3>
+                        <p data-translate="ai_feature4_desc">اكتشف تقنيات إنشاء المحتوى تلقائياً بواسطة الذكاء الاصطناعي</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="note">
-                <p>🎁 عرض خاص للعملاء الجدد: خصم إضافي على أول طلبية!</p>
-                <p>📞 اتصل بنا الآن ولا تفوت هذه الفرصة!</p>
+            <h2 class="section-title" id="features" data-translate="features_title">مميزات الكورسات:</h2>
+            <div class="features">
+                <div class="feature animate">
+                    <i class="fas fa-certificate"></i>
+                    <div>
+                        <h3 data-translate="feature1_title">شهادات معتمدة دولياً</h3>
+                        <p data-translate="feature1_desc">احصل على شهادات معترف بها عالمياً تثبت إتقانك للمهارات التي تعلمتها</p>
+                    </div>
+                </div>
+                <div class="feature animate delay-1">
+                    <i class="fas fa-play-circle"></i>
+                    <div>
+                        <h3 data-translate="feature2_title">وصول مدى الحياة للمحتوى</h3>
+                        <p data-translate="feature2_desc">استمر في الوصول إلى محتوى الكورسات في أي وقت ومن أي مكان</p>
+                    </div>
+                </div>
+                <div class="feature animate delay-2">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <h3 data-translate="feature3_title">محتوى عالي الجودة</h3>
+                        <p data-translate="feature3_desc">استفد من محتوى تعليمي عالي الجودة تم إعداده من قبل خبراء متخصصين</p>
+                    </div>
+                </div>
+                <div class="feature animate delay-3">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <h3 data-translate="feature4_title">دعم فني متواصل</h3>
+                        <p data-translate="feature4_desc">احصل على دعم فني متواصل طوال فترة تعلمك من خلال فريق متخصص</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="new-features">
+                <h2 class="section-title" data-translate="new_features_title">مميزات جديدة حصرية!</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-video"></i>
+                        <h3 data-translate="new_feature1_title">دروس حية مباشرة</h3>
+                        <p data-translate="new_feature1_desc">تفاعل مع مدربين محترفين في جلسات مباشرة أسبوعياً</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3 data-translate="new_feature2_title">مشاريع عملية</h3>
+                        <p data-translate="new_feature2_desc">طبق ما تعلمته في مشاريع حقيقية تضيفها ل portfolio الخاص بك</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <h3 data-translate="new_feature3_title">مجتمع تعليمي</h3>
+                        <p data-translate="new_feature3_desc">انضم لمجتمع من المتعلمين وتبادل الخبرات والمعرفة</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-briefcase"></i>
+                        <h3 data-translate="new_feature4_title">فرص عمل</h3>
+                        <p data-translate="new_feature4_desc">احصل على مساعدة في إيجاد فرص عمل من خلال شركائنا</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title" id="testimonials" data-translate="testimonials_title">آراء عملائنا:</h2>
+            <div class="testimonials">
+                <div class="testimonial animate">
+                    <div class="testimonial-text" data-translate="testimonial1_text">
+                        "اشتريت عدة كورسات عبر الموقع وكانت تجربة رائعة، الأسعار لا تنافس والجودة ممتازة! استفدت كثيرًا من كورس تطوير الويب وأصبحت قادرًا على إنشاء مواقع احترافية."
+                    </div>
+                    <div class="testimonial-author">أحمد محمد</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial animate delay-1">
+                    <div class="testimonial-text" data-translate="testimonial2_text">
+                        "الدعم الفني كان سريعاً ومفيداً، ساعدوني في اختيار الكورسات المناسبة لاحتياجاتي. كورس تحليل البيانات ساعدني في تطوير مهاراتي والحصول على ترقية في عملي."
+                    </div>
+                    <div class="testimonial-author">سارة عبد الله</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="testimonial animate delay-2">
+                    <div class="testimonial-text" data-translate="testimonial3_text">
+                        "حصلت على شهادة معتمدة ساعدتني في الحصول على ترقية في عملي، شكراً لكم! المواد التعليمية كانت شاملة وسهلة الفهم حتى للمبتدئين."
+                    </div>
+                    <div class="testimonial-author">محمود علي</div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title" id="faq" data-translate="faq_title">الأسئلة الشائعة:</h2>
+            <div class="faq">
+                <div class="faq-item animate">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq1_question">كيف يمكنني الحصول على الكورسات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-translate="faq1_answer">
+                        يمكنك التواصل معنا عبر الواتساب على الرقم الموجود، وسنقوم بإرسال القائمة الكاملة للكورسات المتاحة والأسعار. بعد ذلك يمكنك اختيار الكورس المناسب وسنقوم بتفعيله لك فوراً.
+                    </div>
+                </div>
+                <div class="faq-item animate delay-1">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq2_question">هل الشهادات معتمدة?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-translate="faq2_answer">
+                        نعم، جميع الشهادات معتمدة دولياً ويمكنك إضافتها إلى سيرتك الذاتية وملفك الشخصي على LinkedIn. الشهادات تصدر من منصة يوديمي المعترف بها عالمياً.
+                    </div>
+                </div>
+                <div class="faq-item animate delay-2">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq3_question">ما هي مدة الوصول للكورسات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-translate="faq3_answer">
+                        جميع الكورسات تأتي مع وصول مدى الحياة، يمكنك مشاهدتها في أي وقت وتحميل المواد الخاصة بها. يمكنك التعلم حسب سرعتك الخاصة دون قيود زمنية.
+                    </div>
+                </div>
+                <div class="faq-item animate delay-3">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq4_question">كيف يمكنني الدفع للحصول على الكورسات؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" data-translate="faq4_answer">
+                        نوفر عدة طرق للدفع بما في ذلك التحويل البنكي، الدفع عند الاستلام، والدفع الإلكتروني عبر البطاقات الائتمانية. سنحدد معك طريقة الدفع المناسبة عند التواصل.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact" id="contact">
+                <div class="contact-content">
+                    <h2 class="section-title" data-translate="contact_title">ابدأ رحلتك التعليمية اليوم!</h2>
+                    <p data-translate="contact_text">للحصول على التفاصيل الكاملة للكورسات والأسعار:</p>
+                    <div class="phone-number">01010421571</div>
+                    <p data-translate="contact_subtext">راسلنا على الواتساب للحصول على القائمة الكاملة للكورسات المتاحة</p>
+                    <a href="https://wa.me/201010421571" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> 
+                        <span data-translate="whatsapp_btn">تواصل معنا على واتساب</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="note animate">
+                <p data-translate="note1">🎁 عرض خاص للعملاء الجدد: خصم إضافي على أول طلبية!</p>
+                <p data-translate="note2">📞 اتصل بنا الآن ولا تفوت هذه الفرصة!</p>
             </div>
         </div>
         
         <div class="footer">
             <p>© 2023 كورسات يوديمي بأسعار مذهلة | جميع الحقوق محفوظة</p>
+            <p>تواصل معنا: <a href="tel:01010421571">01010421571</a> | <a href="mailto:info@example.com">info@example.com</a></p>
         </div>
     </div>
+
+    <script>
+        // بيانات الترجمة متعددة اللغات
+        const translations = {
+            ar: {
+                site_title: "كورسات يوديمي",
+                nav_courses: "الكورسات",
+                nav_features: "المميزات",
+                nav_ai: "الذكاء الاصطناعي",
+                nav_testimonials: "آراء العملاء",
+                nav_faq: "الأسئلة الشائعة",
+                nav_contact: "اتصل بنا",
+                main_title: "🔥 كورسات يوديمي بأسعار لا تصدق! 🔥",
+                main_subtitle: "احصل على أفضل الكورسات في جميع المجالات بأسعار تبدأ من 50 جنيهاً فقط! شهادات معتمدة، وصول مدى الحياة، ودعم فني متواصل.",
+                pricing_title: "أسعارنا لا تنافس!",
+                pricing_text: "كورسات بأسعار تبدأ من",
+                pricing_subtext: "لأفضل الكورسات على منصة يوديمي العالمية",
+                special_offer: "عرض لفترة محدودة!",
+                courses_title: "مجالات الكورسات المتاحة:",
+                web_dev_title: "برمجة وتطوير المواقع",
+                web_dev_desc: "تعلم أحدث تقنيات البرمجة وتطوير التطبيقات",
+                web_dev_item1: "تطوير واجهات المستخدم (Frontend)",
+                web_dev_item2: "تطوير الخوادم وقواعد البيانات (Backend)",
+                web_dev_item3: "برمجة تطبيقات الموبايل",
+                web_dev_item4: "تعلم لغات البرمجة (Python, JavaScript, Java)",
+                web_dev_item5: "أطر العمل (React, Angular, Vue)",
+                web_dev_item6: "التطوير باستخدام WordPress",
+                ai_title: "الذكاء الاصطناعي",
+                ai_desc: "احترف أحدث تقنيات الذكاء الاصطناعي وتعلم الآلة",
+                ai_item1: "تعلم الآلة (Machine Learning)",
+                ai_item2: "التعلم العميق (Deep Learning)",
+                ai_item3: "معالجة اللغة الطبيعية (NLP)",
+                ai_item4: "الرؤية بالحاسب (Computer Vision)",
+                ai_item5: "إنشاء نماذج الذكاء الاصطناعي",
+                ai_item6: "تطبيقات الذكاء الاصطناعي في الأعمال",
+                money_title: "الربح من الإنترنت",
+                money_desc: "اكتشف طرق مبتكرة لتحقيق دخل عبر الإنترنت",
+                money_item1: "التسويق بالعمولة (Affiliate Marketing)",
+                money_item2: "التجارة الإلكترونية (E-commerce)",
+                money_item3: "التسويق الرقمي (Digital Marketing)",
+                money_item4: "إنشاء المحتوى والمدونات",
+                money_item5: "العمل الحر عبر الإنترنت (Freelancing)",
+                money_item6: "استثمار العملات الرقمية",
+                design_title: "التصميم الجرافيكي",
+                design_desc: "أبدع في تصميم الشعارات والمواد البصرية",
+                design_item1: "التصميم باستخدام Adobe Photoshop",
+                design_item2: "التصميم باستخدام Adobe Illustrator",
+                design_item3: "تصميم واجهات المستخدم (UI/UX)",
+                design_item4: "تصميم الشعارات والهويات البصرية",
+                design_item5: "التصميم باستخدام Figma",
+                design_item6: "فنون الطباعة والخطوط",
+                marketing_title: "التسويق الرقمي",
+                marketing_desc: "طور مهاراتك في التسويق الإلكتروني",
+                marketing_item1: "التسويق عبر وسائل التواصل الاجتماعي",
+                marketing_item2: "تحسين محركات البحث (SEO)",
+                marketing_item3: "التسويق عبر محركات البحث (SEM)",
+                marketing_item4: "التسويق عبر البريد الإلكتروني",
+                marketing_item5: "تحليل أداء الحملات التسويقية",
+                marketing_item6: "التسويق بالمحتوى",
+                data_title: "تحليل البيانات",
+                data_desc: "احترف تحليل البيانات وتقديم الرؤى القيمة",
+                data_item1: "تحليل البيانات باستخدام Excel",
+                data_item2: "تعلم لغة R للتحليل الإحصائي",
+                data_item3: "تحليل البيانات باستخدام Python",
+                data_item4: "تصور البيانات باستخدام Tableau",
+                data_item5: "تعلم SQL للتعامل مع قواعد البيانات",
+                data_item6: "التعلم الآلي والذكاء الاصطناعي",
+                mobile_title: "تطبيقات الموبايل",
+                mobile_desc: "تعلم تطوير تطبيقات الهواتف الذكية",
+                mobile_item1: "تطوير تطبيقات Android",
+                mobile_item2: "تطوير تطبيقات iOS",
+                mobile_item3: "التطوير باستخدام Flutter",
+                mobile_item4: "التطوير باستخدام React Native",
+                mobile_item5: "تصميم واجهات تطبيقات الموبايل",
+                mobile_item6: "نشر التطبيقات على المتاجر",
+                business_title: "إدارة الأعمال",
+                business_desc: "طور مهاراتك الإدارية وقدرتك على قيادة المشاريع",
+                business_item1: "إدارة المشاريع",
+                business_item2: "التخطيط الاستراتيجي",
+                business_item3: "إدارة الموارد البشرية",
+                business_item4: "التسويق والمبيعات",
+                business_item5: "تحليل السوق والمنافسة",
+                business_item6: "ريادة الأعمال",
+                ai_section_title: "🌟 الذكاء الاصطناعي - مستقبل التكنولوجيا 🌟",
+                ai_section_desc: "انطلق في رحلة تعلم الذكاء الاصطناعي مع أفضل الكورسات التي تؤهلك لسوق العمل المستقبلي",
+                ai_feature1_title: "تعلم الآلة",
+                ai_feature1_desc: "تعلم كيفية بناء نماذج تتعلم من البيانات وتتخذ قرارات ذكية",
+                ai_feature2_title: "معالجة اللغة الطبيعية",
+                ai_feature2_desc: "احترف تقنيات فهم وتحليل اللغات البشرية بواسطة الحاسب",
+                ai_feature3_title: "الرؤية بالحاسب",
+                ai_feature3_desc: "تعلم تقنيات تمكين الحواسيب من فهم المحتوى البصري",
+                ai_feature4_title: "الذكاء الاصطناعي التوليدي",
+                ai_feature4_desc: "اكتشف تقنيات إنشاء المحتوى تلقائياً بواسطة الذكاء الاصطناعي",
+                features_title: "مميزات الكورسات:",
+                feature1_title: "شهادات معتمدة دولياً",
+                feature1_desc: "احصل على شهادات معترف بها عالمياً تثبت إتقانك للمهارات التي تعلمتها",
+                feature2_title: "وصول مدى الحياة للمحتوى",
+                feature2_desc: "استمر في الوصول إلى محتوى الكورسات في أي وقت ومن أي مكان",
+                feature3_title: "محتوى عالي الجودة",
+                feature3_desc: "استفد من محتوى تعليمي عالي الجودة تم إعداده من قبل خبراء متخصصين",
+                feature4_title: "دعم فني متواصل",
+                feature4_desc: "احصل على دعم فني متواصل طوال فترة تعلمك من خلال فريق متخصص",
+                new_features_title: "مميزات جديدة حصرية!",
+                new_feature1_title: "دروس حية مباشرة",
+                new_feature1_desc: "تفاعل مع مدربين محترفين في جلسات مباشرة أسبوعياً",
+                new_feature2_title: "مشاريع عملية",
+                new_feature2_desc: "طبق ما تعلمته في مشاريع حقيقية تضيفها ل portfolio الخاص بك",
+                new_feature3_title: "مجتمع تعليمي",
+                new_feature3_desc: "انضم لمجتمع من المتعلمين وتبادل الخبرات ومعرفة",
+                new_feature4_title: "فرص عمل",
+                new_feature4_desc: "احصل على مساعدة في إيجاد فرص عمل من خلال شركائنا",
+                testimonials_title: "آراء عملائنا:",
+                testimonial1_text: "\"اشتريت عدة كورسات عبر الموقع وكانت تجربة رائعة، الأسعار لا تنافس والجودة ممتازة! استفدت كثيرًا من كورس تطوير الويب وأصبحت قادرًا على إنشاء مواقع احترافية.\"",
+                testimonial2_text: "\"الدعم الفني كان سريعاً ومفيداً، ساعدوني في اختيار الكورسات المناسبة لاحتياجاتي. كورس تحليل البيانات ساعدني في تطوير مهاراتي والحصول على ترقية في عملي.\"",
+                testimonial3_text: "\"حصلت على شهادة معتمدة ساعدتني في الحصول على ترقية في عملي، شكراً لكم! المواد التعليمية كانت شاملة وسهلة الفهم حتى للمبتدئين.\"",
+                faq_title: "الأسئلة الشائعة:",
+                faq1_question: "كيف يمكنني الحصول على الكورسات؟",
+                faq1_answer: "يمكنك التواصل معنا عبر الواتساب على الرقم الموجود، وسنقوم بإرسال القائمة الكاملة للكورسات المتاحة والأسعار. بعد ذلك يمكنك اختيار الكورس المناسب وسنقوم بتفعيله لك فوراً.",
+                faq2_question: "هل الشهادات معتمدة؟",
+                faq2_answer: "نعم، جميع الشهادات معتمدة دولياً ويمكنك إضافتها إلى سيرتك الذاتية وملفك الشخصي على LinkedIn. الشهادات تصدر من منصة يوديمي المعترف بها عالمياً.",
+                faq3_question: "ما هي مدة الوصول للكورسات؟",
+                faq3_answer: "جميع الكورسات تأتي مع وصول مدى الحياة، يمكنك مشاهدتها في أي وقت وتحميل المواد الخاصة بها. يمكنك التعلم حسب سرعتك الخاصة دون قيود زمنية.",
+                faq4_question: "كيف يمكنني الدفع للحصول على الكورسات؟",
+                faq4_answer: "نوفر عدة طرق للدفع بما في ذلك التحويل البنكي، الدفع عند الاستلام، والدفع الإلكتروني عبر البطاقات الائتمانية. سنحدد معك طريقة الدفع المناسبة عند التواصل.",
+                contact_title: "ابدأ رحلتك التعليمية اليوم!",
+                contact_text: "للحصول على التفاصيل الكاملة للكورسات والأسعار:",
+                contact_subtext: "راسلنا على الواتساب للحصول على القائمة الكاملة للكورسات المتاحة",
+                whatsapp_btn: "تواصل معنا على واتساب",
+                note1: "🎁 عرض خاص للعملاء الجدد: خصم إضافي على أول طلبية!",
+                note2: "📞 اتصل بنا الآن ولا تفوت هذه الفرصة!"
+            },
+            en: {
+                site_title: "Udemy Courses",
+                nav_courses: "Courses",
+                nav_features: "Features",
+                nav_ai: "Artificial Intelligence",
+                nav_testimonials: "Testimonials",
+                nav_faq: "FAQ",
+                nav_contact: "Contact Us",
+                main_title: "🔥 Amazing Udemy Courses at Unbelievable Prices! 🔥",
+                main_subtitle: "Get the best courses in all fields starting from 50 Egyptian pounds only! Certified certificates, lifetime access, and continuous technical support.",
+                pricing_title: "Our Prices Are Unbeatable!",
+                pricing_text: "Courses starting from",
+                pricing_subtext: "For the best courses on the global Udemy platform",
+                special_offer: "Limited time offer!",
+                courses_title: "Available Course Categories:",
+                web_dev_title: "Programming and Web Development",
+                web_dev_desc: "Learn the latest programming and application development techniques",
+                web_dev_item1: "Frontend Development",
+                web_dev_item2: "Backend Development (Servers & Databases)",
+                web_dev_item3: "Mobile App Programming",
+                web_dev_item4: "Learning Programming Languages (Python, JavaScript, Java)",
+                web_dev_item5: "Frameworks (React, Angular, Vue)",
+                web_dev_item6: "Development using WordPress",
+                ai_title: "Artificial Intelligence",
+                ai_desc: "Master the latest AI and machine learning techniques",
+                ai_item1: "Machine Learning",
+                ai_item2: "Deep Learning",
+                ai_item3: "Natural Language Processing (NLP)",
+                ai_item4: "Computer Vision",
+                ai_item5: "Creating AI Models",
+                ai_item6: "AI Applications in Business",
+                money_title: "Making Money Online",
+                money_desc: "Discover innovative ways to generate income online",
+                money_item1: "Affiliate Marketing",
+                money_item2: "E-commerce",
+                money_item3: "Digital Marketing",
+                money_item4: "Content Creation and Blogging",
+                money_item5: "Online Freelancing",
+                money_item6: "Cryptocurrency Investment",
+                design_title: "Graphic Design",
+                design_desc: "Excel in designing logos and visual materials",
+                design_item1: "Design using Adobe Photoshop",
+                design_item2: "Design using Adobe Illustrator",
+                design_item3: "UI/UX Design",
+                design_item4: "Logo and Brand Identity Design",
+                design_item5: "Design using Figma",
+                design_item6: "Typography and Fonts",
+                marketing_title: "Digital Marketing",
+                marketing_desc: "Develop your skills in digital marketing",
+                marketing_item1: "Social Media Marketing",
+                marketing_item2: "Search Engine Optimization (SEO)",
+                marketing_item3: "Search Engine Marketing (SEM)",
+                marketing_item4: "Email Marketing",
+                marketing_item5: "Marketing Campaign Performance Analysis",
+                marketing_item6: "Content Marketing",
+                data_title: "Data Analysis",
+                data_desc: "Master data analysis and providing valuable insights",
+                data_item1: "Data Analysis using Excel",
+                data_item2: "Learning R for Statistical Analysis",
+                data_item3: "Data Analysis using Python",
+                data_item4: "Data Visualization using Tableau",
+                data_item5: "Learning SQL for Database Management",
+                data_item6: "Machine Learning and Artificial Intelligence",
+                mobile_title: "Mobile Applications",
+                mobile_desc: "Learn to develop smartphone applications",
+                mobile_item1: "Android App Development",
+                mobile_item2: "iOS App Development",
+                mobile_item3: "Development using Flutter",
+                mobile_item4: "Development using React Native",
+                mobile_item5: "Mobile App UI Design",
+                mobile_item6: "Publishing Apps on Stores",
+                business_title: "Business Management",
+                business_desc: "Develop your managerial skills and ability to lead projects",
+                business_item1: "Project Management",
+                business_item2: "Strategic Planning",
+                business_item3: "Human Resources Management",
+                business_item4: "Marketing and Sales",
+                business_item5: "Market and Competition Analysis",
+                business_item6: "Entrepreneurship",
+                ai_section_title: "🌟 Artificial Intelligence - The Future of Technology 🌟",
+                ai_section_desc: "Start your AI learning journey with the best courses that prepare you for the future job market",
+                ai_feature1_title: "Machine Learning",
+                ai_feature1_desc: "Learn how to build models that learn from data and make smart decisions",
+                ai_feature2_title: "Natural Language Processing",
+                ai_feature2_desc: "Master techniques for understanding and analyzing human languages by computers",
+                ai_feature3_title: "Computer Vision",
+                ai_feature3_desc: "Learn techniques to enable computers to understand visual content",
+                ai_feature4_title: "Generative AI",
+                ai_feature4_desc: "Discover techniques for automatically creating content using AI",
+                features_title: "Course Features:",
+                feature1_title: "Internationally Certified Certificates",
+                feature1_desc: "Get globally recognized certificates that prove your mastery of the skills you've learned",
+                feature2_title: "Lifetime Access to Content",
+                feature2_desc: "Continue to access course content anytime, anywhere",
+                feature3_title: "High-Quality Content",
+                feature3_desc: "Benefit from high-quality educational content prepared by expert specialists",
+                feature4_title: "Continuous Technical Support",
+                feature4_desc: "Get continuous technical support throughout your learning period through a specialized team",
+                new_features_title: "New Exclusive Features!",
+                new_feature1_title: "Live Interactive Sessions",
+                new_feature1_desc: "Interact with professional trainers in weekly live sessions",
+                new_feature2_title: "Practical Projects",
+                new_feature2_desc: "Apply what you've learned in real projects to add to your portfolio",
+                new_feature3_title: "Learning Community",
+                new_feature3_desc: "Join a community of learners and exchange experiences and knowledge",
+                new_feature4_title: "Job Opportunities",
+                new_feature4_desc: "Get help finding job opportunities through our partners",
+                testimonials_title: "What Our Clients Say:",
+                testimonial1_text: "\"I bought several courses through the site and it was a great experience, the prices are unbeatable and the quality is excellent! I benefited a lot from the web development course and became able to create professional websites.\"",
+                testimonial2_text: "\"Technical support was quick and helpful, they helped me choose the right courses for my needs. The data analysis course helped me develop my skills and get a promotion at work.\"",
+                testimonial3_text: "\"I got a certified certificate that helped me get a promotion at work, thank you! The educational materials were comprehensive and easy to understand even for beginners.\"",
+                faq_title: "Frequently Asked Questions:",
+                faq1_question: "How can I get the courses?",
+                faq1_answer: "You can contact us via WhatsApp on the number provided, and we will send you the complete list of available courses and prices. Then you can choose the appropriate course and we will activate it for you immediately.",
+                faq2_question: "Are the certificates certified?",
+                faq2_answer: "Yes, all certificates are internationally certified and you can add them to your resume and LinkedIn profile. Certificates are issued by the internationally recognized Udemy platform.",
+                faq3_question: "What is the access period for the courses?",
+                faq3_answer: "All courses come with lifetime access, you can watch them at any time and download their materials. You can learn at your own pace without time constraints.",
+                faq4_question: "How can I pay for the courses?",
+                faq4_answer: "We provide multiple payment methods including bank transfer, cash on delivery, and electronic payment via credit cards. We will determine the appropriate payment method with you when contacting.",
+                contact_title: "Start Your Learning Journey Today!",
+                contact_text: "To get full details of courses and prices:",
+                contact_subtext: "Message us on WhatsApp to get the full list of available courses",
+                whatsapp_btn: "Contact us on WhatsApp",
+                note1: "🎁 Special offer for new customers: Extra discount on first order!",
+                note2: "📞 Contact us now and don't miss this opportunity!"
+            }
+        };
+
+        // دالة تغيير اللغة
+        function changeLanguage(lang) {
+            // تحديث النصوص
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // تحديث اتجاه الصفحة
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+            }
+            
+            // تحديث حالة أزرار اللغة
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // حفظ اللغة المختارة
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // تفعيل الأقسام
+        function toggleCategory(element) {
+            // إغلاق جميع الأقسام الأخرى
+            document.querySelectorAll('.category').forEach(cat => {
+                if (cat !== element && cat.classList.contains('active')) {
+                    cat.classList.remove('active');
+                }
+            });
+            
+            // فتح أو إغلاق القسم المحدد
+            element.classList.toggle('active');
+        }
+        
+        // تفعيل الأسئلة الشائعة
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('faq-active');
+        }
+        
+        // جعل شريط التنقل ثابتًا عند التمرير
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // إضافة تأثيرات عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        // تهيئة الصفحة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            // تعيين اللغة المفضلة
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
+            changeLanguage(savedLanguage);
+            
+            // إضافة مستمعي الأحداث لأزرار اللغة
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // مراقبة العناصر للتأثيرات
+            document.querySelectorAll('.animate').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // تأكيد تحميل الصفحة
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 </html>
